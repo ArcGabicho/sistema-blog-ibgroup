@@ -1,5 +1,8 @@
+import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
 	title: {
@@ -37,13 +40,9 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function Layout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default function Layout({ children }: { children: React.ReactNode; }) {
 	return (
-		<html lang="es">
+		<html lang="es" className={inter.variable}>
 			<head />
 			<body className="min-h-screen bg-background text-foreground font-sans antialiased">
 				{children}

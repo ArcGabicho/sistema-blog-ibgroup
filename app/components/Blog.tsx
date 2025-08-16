@@ -1,77 +1,70 @@
-export default function Blog(){
-    return (
-        <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-            Últimas Publicaciones de Blog
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                alt="Blog post about job interviews"
-                className="w-full h-56 object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcJuxA_SKewhdJsXuxKX4rwsM3CA1IvlcK7GGhuW19FI35Yw9piuFPFVsK22Gga4d8uAKHF23P74AalnN5Pn3O4aBznRNu8t-Mue2XVNbMCRUPRsb_VJoZlDmKiogMxlt_cUCIHnltJF67Y1-jLkctxmBjqeOLL8mpmiZNDSUNO37SZcjk01cMkpTB72NXZs33GaCHKZRhNsvDKi-qKuBXuEGNXO9_cMvtOX95jhxUNg3HTTagpGnmXHZcKkEdArBV09MOLh6zgMU"
-              />
+import Image from "next/image";
+
+interface BlogPost {
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  alt: string;
+  link: string;
+}
+
+const posts: BlogPost[] = [
+  {
+    title: "Preguntas Clave en Entrevistas",
+    description: "Domina las entrevistas conociendo las preguntas más comunes y cómo responderlas eficazmente.",
+    category: "EMPLEABILIDAD",
+    image: "/assets/blog_1.png",
+    alt: "Blog post about job interviews",
+    link: "/blog/preguntas-clave-entrevistas",
+  },
+  {
+    title: "Adaptándose al Cambio",
+    description: "Las tecnologías avanzan y es crucial que los profesionales evolucionen con ellas. Descubre cómo.",
+    category: "TRANSFORMACIÓN DIGITAL",
+    image: "/assets/blog_2.png",
+    alt: "Blog post about digital transformation",
+    link: "/blog/adaptandose-al-cambio",
+  },
+  {
+    title: "Tu Espacio de Trabajo Ideal",
+    description: "Crea un entorno que fomente la productividad y el bienestar. Consejos para tu home office.",
+    category: "DESARROLLO PROFESIONAL",
+    image: "/assets/blog_3.png",
+    alt: "Blog post about a professional's desk",
+    link: "/blog/tu-espacio-de-trabajo-ideal",
+  },
+];
+
+export default function Blog() {
+  return (
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+          Últimas Publicaciones de Blog
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post, idx) => (
+            <div key={idx} className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <Image alt={post.alt} className="w-full h-56 object-cover" src={post.image} width={400} height={224} />
               <div className="p-6">
-                <span className="text-sm text-red-600 font-semibold"
-                  >EMPLEABILIDAD</span
-                >
+                <span className="text-sm text-red-600 font-semibold">
+                  {post.category}
+                </span>
                 <h3 className="text-xl font-bold my-2">
-                  Preguntas Clave en Entrevistas
+                  {post.title}
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Domina las entrevistas conociendo las preguntas más comunes y
-                  cómo responderlas eficazmente.
+                  {post.description}
                 </p>
-                <a className="text-red-600 font-semibold hover:underline" href="#"
-                  >Leer más</a
-                >
+                <a className="text-red-600 font-semibold hover:underline" href={post.link}>
+                  Leer más
+                </a>
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                alt="Blog post about digital transformation"
-                className="w-full h-56 object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuChu9kDHS2AiA0t_Jd18vvRgCiBCyIyoWFSJYal1TK3mQih9k8AC_nrnaQXzvXjpLr9aDstWATSm_WMNJRfnQCJtutBHBmFY5L-j2PBoI-9_Yt4E7ts9tFTeU8OK6neN5EMJ0SwZRunnK-djO3Z7mGGUDgeAYCu8YVZsxMbZFo1Zge7JZrrx4uYk_N0BGVd6lFz15PP_j1d-xY-NbUnq_rC6eNuS4gHDemxJtB4cCv3nNTmrTE8qUGdNyCz6U0__zFQaRxvswElosg"
-              />
-              <div className="p-6">
-                <span className="text-sm text-red-600 font-semibold"
-                  >TRANSFORMACIÓN DIGITAL</span
-                >
-                <h3 className="text-xl font-bold my-2">Adaptándose al Cambio</h3>
-                <p className="text-gray-600 mb-4">
-                  Las tecnologías avanzan y es crucial que los profesionales
-                  evolucionen con ellas. Descubre cómo.
-                </p>
-                <a className="text-red-600 font-semibold hover:underline" href="#"
-                  >Leer más</a
-                >
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                alt="Blog post about a professional's desk"
-                className="w-full h-56 object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDfI4vbqxvIyAYK2o4LEs-TFlTAKExtDvS0Tch2VPjr_ea1kl9SNBC39TErGbrMNCIRaFZfsYE7Auac4ofJcuSxlhOGbDUZZgRqgvg7h3xjHWrMGRRptzllsoCO8mwgs74iQB8UwggNoxcVLJL4fsJZdPotyaXLPXHpRdJt2GwI04z3nYS_A9ql22iKvu_cXtDaI7BG0LG3i9lhX45eLmqWHD3Sv0IwTId_yEuBA2al0aFzxBMyaJbScDd7cSTgYoWu62NzBvcEY0"
-              />
-              <div className="p-6">
-                <span className="text-sm text-red-600 font-semibold"
-                  >DESARROLLO PROFESIONAL</span
-                >
-                <h3 className="text-xl font-bold my-2">
-                  Tu Espacio de Trabajo Ideal
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Crea un entorno que fomente la productividad y el bienestar.
-                  Consejos para tu home office.
-                </p>
-                <a className="text-red-600 font-semibold hover:underline" href="#"
-                  >Leer más</a
-                >
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
-    )
+      </div>
+    </section>
+  );
 }
