@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-'use client'
+'use client';
 
 import { db } from '../../utils/firebase';
 import { collection, getDocs } from "firebase/firestore";
@@ -50,16 +50,24 @@ function parseSpanishDate(dateValue: any) {
 }
 
 export default function PostPage({ params }: Props) {
-  // @ts-expect-error Next.js params unwrap
-  const { post: slug } = React.use(params);
+  const [slug, setSlug] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
-
-  // Trae todos los posts y busca el que coincida el slug
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [post, setPost] = useState<any>(null);
 
-  // Obtener post solo en el cliente
   useEffect(() => {
+    let cancelled = false;
+    async function resolveSlug() {
+      // Si params es una Promise, resuélvela
+      const p = params instanceof Promise ? await params : params;
+      if (!cancelled) setSlug(p.post);
+    }
+    resolveSlug();
+    return () => { cancelled = true; };
+  }, [params]);
+
+  useEffect(() => {
+    if (!slug) return;
     async function fetchPost() {
       const querySnapshot = await getDocs(collection(db, "posts"));
       const postDoc = querySnapshot.docs.find(doc => slugify(doc.data().title) === slug);
@@ -68,6 +76,7 @@ export default function PostPage({ params }: Props) {
     fetchPost();
   }, [slug]);
 
+  if (!slug) return <div className="flex items-center justify-center min-h-screen text-xl text-gray-600">Cargando...</div>;
   if (!post) return <div className="flex items-center justify-center min-h-screen text-xl text-gray-600">Post no encontrado</div>;
 
   const postUrl = `https://sistema-blog-ibgroup.vercel.app/blog/${slug}`;
