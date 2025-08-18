@@ -1,4 +1,8 @@
-import { Building, Menu } from 'lucide-react';
+"use client";
+
+import { Menu } from 'lucide-react';
+import { useState } from "react";
+import FormularioContacto from "./FormularioContacto";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,14 +12,16 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-    { label: "Inicio", href: "#inicio" },
-    { label: "Nosotros", href: "#nosotros" },
-    { label: "Servicios", href: "#servicios" },
-    { label: "Preguntas", href: "#preguntas" },
-    { label: "Blog", href: "#blog" },
+    { label: "Inicio", href: "/#inicio" },
+    { label: "Nosotros", href: "/#nosotros" },
+    { label: "Servicios", href: "/#servicios" },
+    { label: "Preguntas", href: "/#preguntas" },
+    { label: "Blog", href: "/#blog" },
 ];
 
 export default function Navbar(){
+    const [modalOpen, setModalOpen] = useState(false);
+
     return (
         <nav className='flex items-center justify-between w-full px-8 py-6 border-b-neutral-800 shadow-2xl'>
             <Image src={"/assets/logo_empresa.webp"} alt="Logo de la empresa" width={300} height={50} />
@@ -31,13 +37,13 @@ export default function Navbar(){
                 <button className='flex md:hidden'>
                     <Menu />
                 </button>
-                <button className='cursor-pointer bg-gradient-to-r from-red-900 to-red-500 text-white px-4 py-2 rounded-md hover:from-red-800 hover:to-red-500 transition-all'>
+                <button onClick={() => setModalOpen(true)} className='cursor-pointer bg-gradient-to-r from-red-900 to-red-500 text-white px-4 py-2 rounded-lg hover:from-red-800 hover:to-red-500 transition-all'>
                     Contacto
                 </button>
-                <button className='cursor-pointer border-4 p-[5px] rounded-md'>
-                    <Building />
-                </button>
             </div>
+            {modalOpen && (
+                <FormularioContacto open={modalOpen} onClose={() => setModalOpen(false)} />
+            )}
         </nav>
     )
 }

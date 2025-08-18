@@ -1,14 +1,46 @@
+import Image from "next/image";
+import Link from "next/link";
 
-export default function Paises(){
-    return (
-        <>
-        <section className="py-20 bg-gray-100">
+interface Pais {
+  nombre: string;
+  bandera: string;
+  alt: string;
+}
+
+const paises: Pais[] = [
+  {
+    nombre: "Perú",
+    bandera: "/assets/bandera_peru.png",
+    alt: "Flag of Peru",
+  },
+  {
+    nombre: "Chile",
+    bandera: "/assets/bandera_chile.png",
+    alt: "Flag of Chile",
+  },
+  {
+    nombre: "Bolivia",
+    bandera: "/assets/bandera_bolivia.png",
+    alt: "Flag of Bolivia",
+  },
+  {
+    nombre: "Argentina",
+    bandera: "/assets/bandera_argentina.png",
+    alt: "Flag of Argentina",
+  },
+];
+
+export default function Paises() {
+  return (
+    <>
+      <section className="py-20 bg-gray-100">
         <div className="container mx-auto px-6 text-center">
-          <img
-            
+          <Image
             alt="IBJOBCOACH Logo"
             className="h-16 mx-auto mb-6"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOTmhG49Cqq8T8efLwYBPVovhEAd_FZdZQ0J4FSZdpaBpIxuWDttAJ9KPPJpebZ-ki9cy3tH6uQqVHENCCwDWj7XEghbDMetqQNPJsXabbLns35BVu-A0vVTUOcdE68kmEfkcie-SnaV9OaU8S_SxgiAbUfph1_E3gkJNOZOsmx31ZfJ87vK_tyMtnQEoRem_f30iS68Vhte65otOm2PPbX2KR3Pyw6KmM8gwJcsS3o07_itUR--8iwlB0Y7JxTGvA2pwcdrE2MHk"
+            src="/assets/logo_empresa.webp"
+            width={350}
+            height={50}
           />
           <h2 className="text-3xl font-bold text-gray-800 mb-4">
             ¿Quieres potenciar tu carrera?
@@ -18,11 +50,13 @@ export default function Paises(){
             metas profesionales. Con programas personalizados y un enfoque
             práctico, te guiaremos en cada paso de tu transición.
           </p>
-          <a
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition duration-300"
-            href="#"
-            >¡Habla con un coach!</a
+          <Link
+            className="cursor-pointer bg-gradient-to-r from-red-900 to-red-500 text-white rounded-lg hover:from-red-800 hover:to-red-500 transition-all font-bold py-3 px-8"
+            href="https://wa.me/51984111555?text=Hola!%20Quisiera%20un%20asesor"
+            target="_blank"
           >
+            ¡Habla con un coach!
+          </Link>
         </div>
       </section>
       <section className="py-20 bg-white">
@@ -31,45 +65,21 @@ export default function Paises(){
             Estamos presentes en los siguientes países
           </h2>
           <div className="flex flex-wrap justify-center items-center gap-12">
-            <div className="text-center">
-              <img
-                
-                alt="Flag of Peru"
-                className="h-20 w-20 rounded-full mx-auto mb-2 shadow-md"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSz5CSdeoFZ-K-ri7wnCATxP4f4LlDrGQ2Xu79oFsqwZnXdXw8jY96kgKb5Qz_r21g4HSn5Nc4bkDERTgdIqb0ZbgpLImHDiWiYpJryag82DashIBBk4ADq-AEir5PcR8Va4mwPy9o7pdChgdkUUTBPvLsA68FaaLWZ6nk0JNlNfOXF--POAKpPYQy7c-_l5A3hCeLGnZEU7vtKEf0O-qstKz_V1-kiMuuHI_3y1AQp3T7c35L8OMiw72C8P3tQPrgDiqZYtSv6DU"
-              />
-              <span className="font-semibold">Perú</span>
-            </div>
-            <div className="text-center">
-              <img
-               
-                alt="Flag of Chile"
-                className="h-20 w-20 rounded-full mx-auto mb-2 shadow-md"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF626TLcfOOxkHx4iIlFxs7oDjO-ZwYx_T6IJ5esR-PwVHTTts3Z4E9J36WXcwsh7ohVlL4o7WANNveev4YNfgmKQ7scrrHfe6jNVq-7NpSM9CuCSLMS2FLfcwBtjdVfXOw4_PvKX3gk7H1tkrMq61cbfIIki7yGMpu6cAGO7m2WaAkM24fNPZm_-_zBFBtNHRgvcu-zfiTuGVOmbCz4X8PoOUV1JmjtiZwBrtWsaGSUlX3t_kIwTupZ6jUEmAf8yDj1ta2F3vvCI"
-              />
-              <span className="font-semibold">Chile</span>
-            </div>
-            <div className="text-center">
-              <img
-                
-                alt="Flag of Bolivia"
-                className="h-20 w-20 rounded-full mx-auto mb-2 shadow-md"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeWpv60UzTh0KyBxAtA-iDJywEIBnLB3vj1zoIO8QXwi7IIVcFZPwO_31OR4TCkGkfRrRcIBwrxlB0JGrKAzxFYFynptbErAEf6qyzjEaGxjRF8OEjlT0anvx1-E6Skdw1gmLYMiT1G0yVyeDoBfwWZori9SX6nsETLVMkLzqZrhGdM4QEytXElB2RPfyLbFg9512_39rgCCfNLEiVqrZo3OHibYXjgMpOD3ZoktobJkYbsvXfPPZ3IzfUO3pmNIKJI4g9dA9RKxU"
-              />
-              <span className="font-semibold">Bolivia</span>
-            </div>
-            <div className="text-center">
-              <img
-                
-                alt="Flag of Argentina"
-                className="h-20 w-20 rounded-full mx-auto mb-2 shadow-md"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIx5Qko7tpIUDypKhOk06SColM1qnvqpCyWPUKCGFzesVrD3wijVDD3owBi_NlAhMNF-4xm0jypeJlIy7lDwYRAZNI6CUqdwwC2_w7uOkPuwPf-JXdShudPj2hJeQfJ6fiLEhyALaL2KLIe6JWuG90ejldyHn6L9B6gQHt7uUdPwxt8W52EcIfF5-l9-BD0xo638CV8zPFtI7OXHpXiOxy311KpDA7VRQjFLIhIfnxM1RUWzL7CZHHb76zyKa3NrjyII8ykagGnZE"
-              />
-              <span className="font-semibold">Argentina</span>
-            </div>
+            {paises.map((pais) => (
+              <div className="text-center" key={pais.nombre}>
+                <Image
+                  alt={pais.alt}
+                  className="h-20 w-20 rounded-full mx-auto mb-2 shadow-md"
+                  src={pais.bandera}
+                  width={80}
+                  height={80}
+                />
+                <span className="font-semibold">{pais.nombre}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-      </>
-    )
+    </>
+  );
 }

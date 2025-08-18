@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -56,6 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode; }) {
 			<head />
 			<body className="min-h-screen bg-background text-foreground font-sans antialiased">
 				{children}
+				<Toaster position="top-right" />
 			</body>
 		</html>
 	);

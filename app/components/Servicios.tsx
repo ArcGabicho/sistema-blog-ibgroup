@@ -2,7 +2,7 @@ import { TrendingUp, Users, Brain, GraduationCap } from 'lucide-react';
 
 export default function Servicios() {
     return (
-        <section className="py-20 bg-gray-800 text-white">
+        <section className="py-20 bg-gray-800 text-white" id='servicios'>
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-4">Nuestros Servicios</h2>
           <p className="text-lg text-gray-300 max-w-4xl mx-auto mb-12">

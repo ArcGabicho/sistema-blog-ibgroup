@@ -5,6 +5,7 @@ import Link from "next/link";
 interface ProgramLink {
     label: string;
     href: string;
+    target: string;
 }
 
 interface VideoSection {
@@ -15,11 +16,13 @@ interface VideoSection {
 const programLinks: ProgramLink[] = [
     {
         label: "Ver Programas",
-        href: "https://iboutplacement.com/pdf/Programas_Outplacement2.pdf"
+        href: "https://iboutplacement.com/pdf/Programas_Outplacement2.pdf",
+        target: "_blank"
     },
     {
         label: "Ver Publicaciones",
-        href: "/blog"
+        href: "/blog",
+        target: ""
     }
 ];
 
@@ -52,7 +55,7 @@ export default function Inicio(){
                         </p>
                     </div>                        
                     <Image
-                        className='w-full h-full object-cover rounded-md' 
+                        className='w-full h-full object-cover rounded-lg' 
                         src={'/assets/outplacement-hero.webp'} 
                         alt='Outplacement el mejor empleo en el menor tiempo posible' 
                         width={500} 
@@ -64,7 +67,7 @@ export default function Inicio(){
                                 key={idx}
                                 className='w-1/2 bg-gradient-to-r from-red-900 to-red-600 text-white px-6 py-3 rounded-lg hover:shadow-lg hover:from-red-800 hover:to-red-500 transition-all duration-300 font-medium text-center'
                                 href={link.href}
-                                target="_blank"
+                                target={link.target}
                             >
                                 {link.label}
                             </Link>
@@ -75,7 +78,7 @@ export default function Inicio(){
             
             <div className="w-full md:w-1/2 h-full flex flex-col gap-4">
                 {videoSections.map((video, idx) => (
-                    <div key={idx} className="bg-white rounded-xl shadow-xl border border-gray-100 p-6 flex-1 flex flex-col">
+                    <div key={idx} className="bg-white rounded-lg shadow-xl border border-gray-100 p-6 flex-1 flex flex-col">
                         <h2 className="text-xl font-bold text-gray-900 mb-4">{video.title}</h2>
                         <div className="flex-1 rounded-lg overflow-hidden">
                             <video

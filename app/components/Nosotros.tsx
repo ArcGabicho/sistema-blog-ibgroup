@@ -6,34 +6,30 @@ const features = [
     title: "Locales y Globales",
     description:
       "Conocemos el mercado regional y global, ofreciendo un servicio de outplacement hecho a tu medida.",
-    color: "bg-red-600",
   },
   {
     icon: <Dumbbell size={40} />,
     title: "Entrenamiento y Recursos",
     description:
       "Nuestros talleres online están diseñados para el éxito. Te damos acceso a las mejores herramientas.",
-    color: "bg-red-600",
   },
   {
     icon: <BadgeCheck size={40} />,
     title: "Calidad y Experiencia",
     description:
       "Ofrecemos sesiones de alta calidad y contenido valioso que garantizan el máximo valor en tu inversión.",
-    color: "bg-red-600",
   },
   {
     icon: <Briefcase size={40} />,
     title: "Mercado Laboral Oculto",
     description:
       "Más del 80% de las ofertas no se publican. Te ayudamos a acceder a este mercado y posicionar tu marca personal.",
-    color: "bg-red-600",
   },
 ];
 
 export default function Nosotros() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50" id='nosotros'>
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
           ¿Por qué elegirnos?
@@ -42,7 +38,7 @@ export default function Nosotros() {
           {features.map((feature, idx) => (
             <div className="text-center" key={idx}>
               <div
-                className={`${feature.color} text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4`}
+                className="cursor-pointer bg-gradient-to-r from-red-900 to-red-500 text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"
               >
                 {feature.icon}
               </div>
