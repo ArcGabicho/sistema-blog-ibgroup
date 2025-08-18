@@ -9,7 +9,8 @@ import { Copy, Check, Facebook, Twitter, Linkedin } from 'lucide-react';
 import React from 'react';
 
 type Props = {
-  params: { post: string }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  params: any;
 };
 
 function slugify(text: string) {
@@ -59,8 +60,8 @@ export default function PostPage({ params }: Props) {
     let cancelled = false;
     async function resolveSlug() {
       // Si params es una Promise, resuélvela
-      const p = params instanceof Promise ? await params : params;
-      if (!cancelled) setSlug(p.post);
+      const p = params && typeof params.then === 'function' ? await params : params;
+      if (!cancelled) setSlug(p?.post ?? null);
     }
     resolveSlug();
     return () => { cancelled = true; };
