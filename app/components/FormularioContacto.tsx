@@ -146,35 +146,50 @@ export default function FormularioContacto({ open, onClose }: Props) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/5 backdrop-blur-sm">
-      <div className="bg-neutral-100 rounded-lg shadow-lg w-full max-w-2xl p-6 relative">
-        <button
-          className="absolute top-2 right-2 text-gray-500"
-          onClick={onClose}
-        >
-          ✕
-        </button>
-        <div className="flex mb-4 border-b">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
+        <div className="sticky top-0 bg-white rounded-t-xl p-4 sm:p-6 border-b border-gray-200 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-gray-900">Formulario de Contacto</h2>
           <button
-            className={`flex-1 py-2 ${tab === "persona" ? "border-b-2 border-red-600 font-bold" : ""}`}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+            onClick={onClose}
+            aria-label="Cerrar formulario"
+          >
+            <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div className="p-4 sm:p-6">
+        <div className="flex mb-6 border-b border-gray-200">
+          <button
+            className={`flex-1 py-3 px-2 text-sm sm:text-base font-medium transition-all duration-200 ${
+              tab === "persona" 
+                ? "border-b-2 border-red-600 text-red-600 bg-red-50" 
+                : "text-gray-600 hover:text-gray-800 hover:bg-gray-50"
+            }`}
             onClick={() => setTab("persona")}
           >
             Persona
           </button>
           <button
-            className={`flex-1 py-2 ${tab === "empresa" ? "border-b-2 border-red-600 font-bold" : ""}`}
+            className={`flex-1 py-3 px-2 text-sm sm:text-base font-medium transition-all duration-200 ${
+              tab === "empresa" 
+                ? "border-b-2 border-red-600 text-red-600 bg-red-50" 
+                : "text-gray-600 hover:text-gray-800 hover:bg-gray-50"
+            }`}
             onClick={() => setTab("empresa")}
           >
             Empresa
           </button>
         </div>
         {tab === "persona" ? (
-          <form className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form className="space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 type="text"
                 placeholder="Nombres"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={persona.nombres || ""}
                 onChange={e => setPersona({ ...persona, nombres: e.target.value })}
                 required
@@ -182,7 +197,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
               <input
                 type="text"
                 placeholder="Apellidos"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={persona.apellidos || ""}
                 onChange={e => setPersona({ ...persona, apellidos: e.target.value })}
                 required
@@ -190,7 +205,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
               <input
                 type="text"
                 placeholder="Cargo"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={persona.cargo || ""}
                 onChange={e => setPersona({ ...persona, cargo: e.target.value })}
                 required
@@ -198,7 +213,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
               <input
                 type="email"
                 placeholder="Correo electrónico"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={persona.email || ""}
                 onChange={e => setPersona({ ...persona, email: e.target.value })}
                 required
@@ -206,13 +221,13 @@ export default function FormularioContacto({ open, onClose }: Props) {
               <input
                 type="tel"
                 placeholder="Teléfono"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={persona.telefono || ""}
                 onChange={e => setPersona({ ...persona, telefono: e.target.value })}
                 required
               />
               <select
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base bg-white"
                 value={persona.actualmenteTrabajando || ""}
                 onChange={e => setPersona({ ...persona, actualmenteTrabajando: e.target.value as "SI" | "NO" })}
                 required
@@ -222,7 +237,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
                 <option value="NO">No</option>
               </select>
               <select
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base bg-white sm:col-span-2"
                 value={persona.servicioRequerido || ""}
                 onChange={e => setPersona({ ...persona, servicioRequerido: e.target.value as ContactPersona["servicioRequerido"] })}
                 required
@@ -233,7 +248,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
                 ))}
               </select>
               <select
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base bg-white"
                 value={persona.salarioPersona || ""}
                 onChange={e => setPersona({ ...persona, salarioPersona: e.target.value as ContactPersona["salarioPersona"] })}
                 required
@@ -244,7 +259,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
                 ))}
               </select>
               <select
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base bg-white"
                 value={persona.pais || ""}
                 onChange={e => {
                   setPersona({ ...persona, pais: e.target.value as ContactPersona["pais"], provincia: "" });
@@ -260,7 +275,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
               {persona.pais ? (
                 provinciasPorPais[persona.pais] ? (
                   <select
-                    className="border p-2 rounded"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base bg-white"
                     value={persona.provincia || ""}
                     onChange={e => setPersona({ ...persona, provincia: e.target.value })}
                     required
@@ -278,36 +293,36 @@ export default function FormularioContacto({ open, onClose }: Props) {
                   <input
                     type="text"
                     placeholder="Provincia"
-                    className="border p-2 rounded"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                     value={persona.provincia || ""}
                     onChange={e => setPersona({ ...persona, provincia: e.target.value })}
                     required
                   />
                 )
               ) : (
-                <select className="border p-2 rounded" disabled>
+                <select className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-400 text-sm sm:text-base" disabled>
                   <option>Primero escoge un país</option>
                 </select>
               )}
             </div>
             <textarea
               placeholder="Consulta"
-              className="w-full border p-2 rounded min-h-[80px]"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base min-h-[100px] resize-none"
               value={persona.consulta || ""}
               onChange={e => setPersona({ ...persona, consulta: e.target.value })}
               required
             />
-            <button type="submit" className="cursor-pointer bg-gradient-to-r from-red-900 to-red-500 text-white px-6 py-2 rounded w-full font-semibold hover:from-red-800 hover:to-red-500 transition-all">
+            <button type="submit" className="w-full bg-gradient-to-r from-red-900 to-red-500 text-white px-6 py-3 rounded-lg hover:from-red-800 hover:to-red-600 transition-all duration-200 font-medium text-sm sm:text-base">
               Enviar
             </button>
           </form>
         ) : (
-          <form className="space-y-3">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form className="space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 type="text"
                 placeholder="Nombres y Apellidos"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={empresa.nombresApellidos || ""}
                 onChange={e => setEmpresa({ ...empresa, nombresApellidos: e.target.value })}
                 required
@@ -315,7 +330,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
               <input
                 type="tel"
                 placeholder="Teléfono"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={empresa.telefono || ""}
                 onChange={e => setEmpresa({ ...empresa, telefono: e.target.value })}
                 required
@@ -323,14 +338,14 @@ export default function FormularioContacto({ open, onClose }: Props) {
               <input
                 type="tel"
                 placeholder="Teléfono fijo (opcional)"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={empresa.telefonoFijo || ""}
                 onChange={e => setEmpresa({ ...empresa, telefonoFijo: e.target.value })}
               />
               <input
                 type="email"
                 placeholder="Correo electrónico"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={empresa.email || ""}
                 onChange={e => setEmpresa({ ...empresa, email: e.target.value })}
                 required
@@ -338,7 +353,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
               <input
                 type="text"
                 placeholder="Empresa"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={empresa.empresa || ""}
                 onChange={e => setEmpresa({ ...empresa, empresa: e.target.value })}
                 required
@@ -346,7 +361,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
               <input
                 type="text"
                 placeholder="RUC"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={empresa.ruc || ""}
                 onChange={e => setEmpresa({ ...empresa, ruc: e.target.value })}
                 required
@@ -354,13 +369,13 @@ export default function FormularioContacto({ open, onClose }: Props) {
               <input
                 type="text"
                 placeholder="Cargo"
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base"
                 value={empresa.cargo || ""}
                 onChange={e => setEmpresa({ ...empresa, cargo: e.target.value })}
                 required
               />
               <select
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base bg-white"
                 value={empresa.nivelServicio || ""}
                 onChange={e => setEmpresa({ ...empresa, nivelServicio: e.target.value as ContactEmpresa["nivelServicio"] })}
                 required
@@ -371,7 +386,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
                 ))}
               </select>
               <select
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base bg-white"
                 value={empresa.rubroEmpresa || ""}
                 onChange={e => setEmpresa({ ...empresa, rubroEmpresa: e.target.value as ContactEmpresa["rubroEmpresa"] })}
                 required
@@ -382,7 +397,7 @@ export default function FormularioContacto({ open, onClose }: Props) {
                 ))}
               </select>
               <select
-                className="border p-2 rounded"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base bg-white sm:col-span-2"
                 value={empresa.nivelPersonalServicio || ""}
                 onChange={e => setEmpresa({ ...empresa, nivelPersonalServicio: e.target.value as ContactEmpresa["nivelPersonalServicio"] })}
                 required
@@ -395,16 +410,17 @@ export default function FormularioContacto({ open, onClose }: Props) {
             </div>
             <textarea
               placeholder="Consulta"
-              className="w-full border p-2 rounded"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm sm:text-base min-h-[100px] resize-none"
               value={empresa.consulta || ""}
               onChange={e => setEmpresa({ ...empresa, consulta: e.target.value })}
               required
             />
-            <button type="submit" className="w-full cursor-pointer bg-gradient-to-r from-red-900 to-red-500 text-white px-4 py-2 rounded hover:from-red-800 hover:to-red-500 transition-all">
+            <button type="submit" className="w-full bg-gradient-to-r from-red-900 to-red-500 text-white px-6 py-3 rounded-lg hover:from-red-800 hover:to-red-600 transition-all duration-200 font-medium text-sm sm:text-base">
               Enviar
             </button>
           </form>
         )}
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 "use client";
 
-import { Menu } from 'lucide-react';
+import { Menu as MenuIcon } from 'lucide-react';
 import { useState } from "react";
 import FormularioContacto from "./FormularioContacto";
+import Menu from "./Menu";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,6 +22,7 @@ const navItems: NavItem[] = [
 
 export default function Navbar(){
     const [modalOpen, setModalOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <nav className='flex items-center justify-between w-full px-6 py-6 border-b-neutral-800 shadow-2xl'>
@@ -42,8 +44,8 @@ export default function Navbar(){
                         </li>
                     ))}
                 </ul>
-                <button className='flex md:hidden p-2'>
-                    <Menu size={20} />
+                <button onClick={() => setMenuOpen(true)} className='flex md:hidden p-2'>
+                    <MenuIcon size={20} />
                 </button>
                 <button onClick={() => setModalOpen(true)} className='cursor-pointer bg-gradient-to-r from-red-900 to-red-500 text-white px-3 sm:px-4 py-2 rounded-lg hover:from-red-800 hover:to-red-500 transition-all text-sm sm:text-base whitespace-nowrap'>
                     Contacto
@@ -51,6 +53,9 @@ export default function Navbar(){
             </div>
             {modalOpen && (
                 <FormularioContacto open={modalOpen} onClose={() => setModalOpen(false)} />
+            )}
+            {menuOpen && (
+                <Menu open={menuOpen} onClose={() => setMenuOpen(false)} />
             )}
         </nav>
     )

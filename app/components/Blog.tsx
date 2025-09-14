@@ -16,7 +16,7 @@ const posts: BlogPost[] = [
     category: "EMPLEABILIDAD",
     image: "/assets/blog_1.png",
     alt: "Blog post about job interviews",
-    link: "/blog/preguntas-clave-entrevistas",
+    link: "/blog/preguntas-clave-en-entrevistas",
   },
   {
     title: "Adaptándose al Cambio",

@@ -81,37 +81,46 @@ export default function BlogPage(){
                     </div>
                 </div>
             </header>
-            <div className='@container px-6 py-8'>
-                <h3 className='text-center md:text-left text-2xl font-bold mx-auto px-6'>Publicaciones</h3>
-                <div className='flex flex-col md:flex-row flex-wrap items-center justify-start gap-10 mx-auto px-6 py-8'>
-                    {posts.map(post => (
-                        <article key={post.id} className='w-[25rem] flex items-center justify-center'>
-                            <Link href={`/blog/${post.slug}`} className='size-full flex flex-col items-start justify-center gap-3'>
-                                <img src={post.imageUrl} className='w-full rounded-lg bg-cover bg-center bg-no-repeat' alt='Portada del Post' width={100} height={100} />
-                                <h2 className='text-2xl font-bold'>{post.title}</h2>
-                                <p className='text-md'>{post.content}</p>
-                                <div className='flex flex-row items-center justify-center gap-4'>
-                                    <img className=' size-[2.5rem] rounded-full' src={post.authorImageUrl} alt='' width={50} height={50} />
-                                    <span>
-                                        {post.author} • {
-                                            (() => {
-                                                if (typeof post.publishedAt === "string") {
-                                                    // Si es un string en español, extrae solo la fecha
-                                                    return parseSpanishDate(post.publishedAt);
-                                                }
-                                                // Si es Date, formatea normalmente
-                                                return post.publishedAt.toLocaleDateString("es-ES", {
-                                                    day: "numeric",
-                                                    month: "long",
-                                                    year: "numeric"
-                                                });
-                                            })()
-                                        }
-                                    </span>
+            <div className='w-full px-4 sm:px-6 lg:px-8 py-8 lg:py-12'>
+                <div className='max-w-7xl mx-auto'>
+                    <h3 className='text-center lg:text-left text-2xl lg:text-3xl font-bold mb-8 lg:mb-12 text-gray-900'>Publicaciones</h3>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'>
+                        {posts.map(post => (
+                            <article key={post.id} className='w-full flex flex-col h-full'>
+                                <Link href={`/blog/${post.slug}`} className='w-full flex flex-col gap-4 lg:gap-6 p-6 lg:p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-[1.02] h-full border border-gray-100'>
+                                    <div className='w-full aspect-[4/3] overflow-hidden rounded-lg'>
+                                        <img src={post.imageUrl} className='w-full h-full object-cover transition-transform duration-300 hover:scale-110' alt='Portada del Post' />
+                                    </div>
+                                    <div className='flex flex-col flex-grow gap-3 lg:gap-4'>
+                                        <h2 className='text-xl lg:text-2xl font-bold text-gray-900 leading-tight overflow-hidden' style={{display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical'}}>{post.title}</h2>
+                                        <p className='text-gray-600 text-sm lg:text-base flex-grow overflow-hidden leading-relaxed' style={{display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical'}}>{post.content}</p>
+                                    </div>
+                                    <div className='flex items-center gap-3 lg:gap-4 pt-4 lg:pt-6 mt-auto border-t border-gray-100'>
+                                        <img className='w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover flex-shrink-0' src={post.authorImageUrl} alt='' />
+                                        <div className='flex flex-col min-w-0 flex-1'>
+                                            <span className='text-sm lg:text-base font-semibold text-gray-900 truncate'>{post.author}</span>
+                                            <span className='text-xs lg:text-sm text-gray-500 truncate'>
+                                            {
+                                                (() => {
+                                                    if (typeof post.publishedAt === "string") {
+                                                        // Si es un string en español, extrae solo la fecha
+                                                        return parseSpanishDate(post.publishedAt);
+                                                    }
+                                                    // Si es Date, formatea normalmente
+                                                    return post.publishedAt.toLocaleDateString("es-ES", {
+                                                        day: "numeric",
+                                                        month: "long",
+                                                        year: "numeric"
+                                                    });
+                                                })()
+                                            }
+                                        </span>
+                                    </div>
                                 </div>
                             </Link>
                         </article>
                     ))}
+                    </div>
                 </div>
             </div>
             <Footer />
