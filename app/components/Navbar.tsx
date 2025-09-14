@@ -23,9 +23,17 @@ export default function Navbar(){
     const [modalOpen, setModalOpen] = useState(false);
 
     return (
-        <nav className='flex items-center justify-between w-full px-8 py-6 border-b-neutral-800 shadow-2xl'>
-            <Image src={"/assets/logo_empresa.webp"} alt="Logo de la empresa" width={300} height={50} />
-            <div className='flex items-center justify-between gap-4'>
+        <nav className='flex items-center justify-between w-full px-6 py-6 border-b-neutral-800 shadow-2xl'>
+            <div className="flex-shrink-0">
+                <Image 
+                    src="/assets/logo_empresa.webp" 
+                    alt="Logo de la empresa" 
+                    width={300} 
+                    height={50} 
+                    className="w-auto h-8 sm:h-10 lg:h-12 max-w-[180px] sm:max-w-[220px] lg:max-w-[300px]"
+                />
+            </div>
+            <div className='flex items-center gap-2 sm:gap-4'>
                 <ul className='hidden md:flex text-lg gap-4'>
                     {navItems.map((item) => (
                         <li key={item.href} className="relative group">
@@ -34,10 +42,10 @@ export default function Navbar(){
                         </li>
                     ))}
                 </ul>
-                <button className='flex md:hidden'>
-                    <Menu />
+                <button className='flex md:hidden p-2'>
+                    <Menu size={20} />
                 </button>
-                <button onClick={() => setModalOpen(true)} className='cursor-pointer bg-gradient-to-r from-red-900 to-red-500 text-white px-4 py-2 rounded-lg hover:from-red-800 hover:to-red-500 transition-all'>
+                <button onClick={() => setModalOpen(true)} className='cursor-pointer bg-gradient-to-r from-red-900 to-red-500 text-white px-3 sm:px-4 py-2 rounded-lg hover:from-red-800 hover:to-red-500 transition-all text-sm sm:text-base whitespace-nowrap'>
                     Contacto
                 </button>
             </div>
